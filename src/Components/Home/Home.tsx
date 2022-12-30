@@ -24,12 +24,14 @@ const useStyles = makeStyles({
 const Home = () => {
     const classes = useStyles();
     const { data, loading, error } = useFatch('https://jsonplaceholder.typicode.com/users')
-    console.log(data)
 
     const [search, setSearch] = React.useState('')
 
     const handleSearch = (e: any) => {
-        setSearch(e.target.value)
+        e.preventDefault()
+        const filteredData = data.filter((user: any) => {
+            return user.name.toLowerCase().includes(search.toLowerCase())
+        })
 
     }
 
@@ -42,9 +44,19 @@ const Home = () => {
             }
 
             <div>
-                <form >
-                    <input type="text" placeholder="Type here" className="input input-bordered input-secondary w-full" />
-                    <button className="btn btn-primary mx-2" onClick={handleSearch}>Search</button>
+                <form>
+                    <input type="text" placeholder="Type here"
+                        name="search"
+                        onChange={
+                            (e) => {
+                                setSearch(e.target.value)
+                            }
+                        }
+                        value={search}
+                        className="input input-bordered input-secondary w-full" />
+                    <button className="btn btn-primary mx-2"
+                        onClick={handleSearch}
+                    >Search</button>
                 </form>
             </div>
 
@@ -54,7 +66,7 @@ const Home = () => {
                     <div className='felx gap-4'>
                         {
                             (loading === false && error === false) && data.map((user: any) => {
-                                console.log(user)
+
                                 return (
                                     <div className="card w-96 bg-base-300 shadow-xl m-4">
                                         <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
