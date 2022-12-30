@@ -11,7 +11,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import useFatch from '../../Hooks/useFatch'
 
-
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
@@ -35,44 +34,50 @@ const Home = () => {
                 </>
             }
 
+            <div>
+                
+            </div>
+
+
             <section>
                 <Container>
-                    <div className='grid grid-col-3  '>
+                    <div className=''>
                         {
                             (loading === false && error === false) && data.map((user: any) => {
                                 console.log(user)
                                 return (
-                                    <>
-                                        <Card className={classes.root}>
-                                            <CardActionArea>
-                                                <CardMedia
-                                                    className={classes.media}
-                                                    image="/static/images/cards/contemplative-reptile.jpg"
-                                                    title="Contemplative Reptile"
-                                                />
-                                                <CardContent>
-                                                    <Typography gutterBottom variant="h5" component="h2">
-                                                        {
-                                                            user?.name
-                                                        }
-                                                    </Typography>
-                                                    <Typography variant="body2" color="textSecondary" component="p">
-                                                        {
-                                                            user?.email
-                                                        }
-                                                    </Typography>
-                                                </CardContent>
-                                            </CardActionArea>
-                                            <CardActions>
-                                                <Button size="small" color="primary">
-                                                    Share
-                                                </Button>
-                                                <Button size="small" color="primary">
-                                                    Learn More
-                                                </Button>
-                                            </CardActions>
-                                        </Card>
-                                    </>
+                                    <div className="card w-96 bg-base-300 shadow-xl m-4">
+                                        <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+                                        <div className="card-body">
+                                            <h2 className="card-title">
+                                                {
+                                                    user?.name
+                                                }
+                                            </h2>
+                                            <p>
+                                                {
+                                                    user?.email
+                                                }
+                                            </p>
+                                            <p>
+                                                {
+                                                    user?.phone
+                                                }
+                                            </p>
+                                            <p>
+                                                {
+                                                    user?.website
+                                                }
+                                            </p>
+                                            <p>
+                                                {
+                                                    user?.company?.name
+                                                }
+                                            </p>
+
+                                        </div>
+                                    </div>
+
                                 )
                             })
                         }
