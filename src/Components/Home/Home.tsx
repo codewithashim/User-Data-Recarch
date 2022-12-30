@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 
 const Home = () => {
     const classes = useStyles();
-    const { data, loading, error } = useFatch('https://jsonplaceholder.typicode.com/users')
+    const { data, loading, error, setData } = useFatch('https://jsonplaceholder.typicode.com/users')
 
     const [search, setSearch] = React.useState('')
 
@@ -32,7 +32,7 @@ const Home = () => {
         const filteredData = data.filter((user: any) => {
             return user.name.toLowerCase().includes(search.toLowerCase())
         })
-
+        setData(filteredData)
     }
 
     return (
